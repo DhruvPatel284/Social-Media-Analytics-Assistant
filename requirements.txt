@@ -1,0 +1,4 @@
+streamlit
+openai
+cassandra-driver
+python-dotenv
