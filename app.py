@@ -97,10 +97,7 @@ def query_social_media_data():
                         value = str(value) if value is not None else None
                     row_dict[column] = value
                 result.append(row_dict)
-        
-        # For debugging
-        st.write("Debug - Query Results:", result)
-        
+                
         return result
     except Exception as e:
         st.error(f"Database query failed: {str(e)}")
@@ -161,6 +158,11 @@ if prompt := st.chat_input("What would you like to know about social media strat
 # Sidebar with additional options
 with st.sidebar:
     st.header("Settings")
+    debug_mode = st.checkbox("Debug Mode", value=False)
+    if debug_mode:
+        if 'last_query_result' in locals():
+            st.write("Debug - Query Results:", last_query_result)
+    
     if st.button("Clear Chat History"):
         st.session_state.messages = []
         st.experimental_rerun()
